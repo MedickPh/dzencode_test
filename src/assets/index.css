@@ -46,6 +46,7 @@ body {
     line-height: 1.5;
     margin: 0;
     z-index: 1;
+    overflow: hidden;
 }
 
 /* Set shorter line heights on headings and interactive elements */

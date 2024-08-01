@@ -1,7 +1,17 @@
 <template>
-    <div :class="{ animation: is_animate, component_wrapper: true }">
+    <!-- Неправильно прочитал тз в спешке и вместо "4. Создать компонент TopMenu, в котором необходимо вывести дату и время"
+    прочитал как "4. Создать компонент TopMenu, в котором необходимо ВВЕСТИ дату и время". А прочитал правильно уже ка сделал ввод даты и времени. 
+    -->
+    <div :class="{ animation: is_animate, component_wrapper: true }" @click="openTimeSettings()">
+        <transition name="fade">
+            <div class="settings_popup" v-if="isTimeSettingOpen">
+                <SmallPopup @closePopup="closeTimeSettings()">
+                    <ManualTimeSet @closePopup="closeTimeSettings()" />
+                </SmallPopup>
+            </div>
+        </transition>
         <div class="date_wrapper">
-            <p class="week_day">{{ weekday_UA[day] }}</p>
+            <p class="week_day">{{ weekday_UA[weekDay] }}</p>
             <p class="date">{{ date }}</p>
         </div>
         <div class="time_wrapper">
@@ -23,52 +33,55 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted } from 'vue'
-const is_animate = ref<boolean>(true)
-const weekday_UA = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П`ятниця', 'Субота']
-const month_UA = [
-    'Січня',
-    'Лютого',
-    'Березня',
-    'Квітня',
-    'Травня',
-    'Червня',
-    'Липня',
-    'Серпня',
-    'Вересня',
-    'Жовтня',
-    'Листопада',
-    'Грудня'
-]
-const currentDate = new Date()
-const day = currentDate.getDay()
-const month = currentDate.getMonth()
-const year = currentDate.getFullYear()
-const date = `${day.toString().padStart(2, '0')} ${month_UA[month]} ${year}`
+import { isDateChanged } from '@/methods/isDateChanged'
+import { weekday_UA } from '/src/data/weekday_UA.js'
+import { month_UA } from '/src/data/month_UA.js'
+import SmallPopup from '../views/SmallPopup.vue'
+import ManualTimeSet from '../components/ManualTimeSet.vue'
+import { useMainStore } from '../stores/mainStore.ts'
+const store = useMainStore()
+
+const is_animate = ref(!localStorage.getItem('is_date_changed'))
+const isTimeSettingOpen = ref(false)
+const weekDay = ref()
+const date = ref('')
 const time = ref('')
+const manualData = ref(parseInt(localStorage.getItem('manualData')))
+
 const updateTime = () => {
-    const dateNow = new Date()
-    time.value = dateNow.toLocaleTimeString()
+    let dateNow
+    console.log(new Date(manualData.value))
+
+    if (manualData.value && !isNaN(Date.parse(manualData.value))) {
+        dateNow = new Date(manualData.value)
+    } else {
+        dateNow = new Date()
+    }
+
+    time.value = dateNow.toLocaleTimeString(store.timeFormat)
+    weekDay.value = dateNow.getDay()
+
+    const month = dateNow.getMonth()
+    const year = dateNow.getFullYear()
+    date.value = `${weekDay.value.toString().padStart(2, '0')} ${month_UA[month]} ${year}`
     requestAnimationFrame(updateTime)
 }
-// const updateTime = () => {
-//     const dateNow = new Date()
-//     const hours = String(dateNow.getHours()).padStart(2, '0')
-//     const minutes = String(dateNow.getMinutes()).padStart(2, '0')
-//     const seconds = String(dateNow.getSeconds()).padStart(2, '0')
-//     const milliseconds = String(dateNow.getMilliseconds()).padStart(3, '0')
 
-//     time.value = `${hours}:${minutes}:${seconds}.${milliseconds}`
+// Безусловно requestAnimationFrame потребляет больше рессурсов устройства, но и выглядит получше)
+// Поэтому если это критично то строку requestAnimationFrame(updateTime) нужно заменить на setInterval(updateTime, 100)
 
-//     requestAnimationFrame(updateTime)
-// }
-const isDateChanged = () => {
-    if (localStorage.getItem('is_date_changed')) {
-        return
-    }
-    localStorage.setItem('is_date_changed', 'false')
+const openTimeSettings = () => {
+    localStorage.setItem('is_date_changed', 'true')
+    is_animate.value = false
+    isTimeSettingOpen.value = true
 }
+const closeTimeSettings = () => {
+    event.stopPropagation()
+    isTimeSettingOpen.value = false
+}
+
 onMounted(() => {
     updateTime()
     isDateChanged()
@@ -81,6 +94,8 @@ onMounted(() => {
     flex-direction: row;
     width: 100%;
     max-width: 250px;
+    cursor: pointer;
+    position: relative;
 
     .date_wrapper {
         width: 100%;
@@ -95,25 +110,36 @@ onMounted(() => {
         display: flex;
         flex-direction: row;
         align-items: center;
+        width: 100%;
         svg {
             margin-right: 10px;
         }
     }
-}
-.animation {
-    position: relative;
-    &::before {
-        content: '';
+    .settings_popup {
         position: absolute;
-        border: 2px solid #b4b4b5;
-        left: 0px;
-        opacity: 0;
-        right: 0px;
-        top: 0px;
-        bottom: 0px;
-        animation: pulse 2.5s linear infinite;
+        width: 100%;
+        max-width: 235px;
+        padding: 10px 15px;
+        background-color: #fff;
+        border: 2px solid #bdbdbd;
+        border-radius: 15px;
+        top: 65px;
+        right: 5px;
+        cursor: auto;
     }
 }
+.animation::before {
+    content: '';
+    position: absolute;
+    border: 2px solid #b4b4b5;
+    left: 0px;
+    opacity: 0;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    animation: pulse 1.5s linear infinite;
+}
+
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -125,6 +151,43 @@ onMounted(() => {
     100% {
         transform: scale(1.2);
         opacity: 0;
+    }
+}
+
+.fade-enter-active {
+    animation: crawl_in 0.5s;
+}
+
+.fade-leave-active {
+    animation: crawl_out 0.5s;
+}
+
+@keyframes crawl_in {
+    0% {
+        opacity: 0;
+        top: 65px;
+        right: -250px;
+    }
+    80% {
+        opacity: 1;
+        right: 20px;
+    }
+    100% {
+        opacity: 1;
+        top: 65px;
+        right: 5px;
+    }
+}
+@keyframes crawl_out {
+    0% {
+        opacity: 1;
+        top: 65px;
+        right: 5;
+    }
+    100% {
+        opacity: 0;
+        top: 65px;
+        right: -250px;
     }
 }
 </style>

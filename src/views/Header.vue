@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="search_and_logo_wrapper">
-            <img src="/chivas_logo.png" alt="" class="header_logo" />
+            <img src="/chivas_logo.webp" alt="" class="header_logo" />
             <div class="input_wrapper">
                 <input type="text" name="search" id="search" v-model="searchTerm" />
                 <label for="search" :class="searchTerm.length >= 1 ? 'hide' : ''">Поиск</label>
@@ -11,9 +11,20 @@
     </header>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import TimeAndDate from '../components/TimeAndDate.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useMainStore } from '../stores/mainStore.ts'
+
+const store = useMainStore()
+const checkTimeFormat = () => {
+    const currentFormat = localStorage.getItem('timeFormat')
+    if (currentFormat) {
+        store.setTimeFormat(currentFormat)
+    }
+}
+
+onMounted(checkTimeFormat)
 const searchTerm = ref('')
 </script>
 
