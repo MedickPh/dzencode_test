@@ -4,10 +4,10 @@ export const checkPossibleDeviation = (newTime) => {
     const manualTimeSet = new Date(newTime)
 
     if (currentDate > manualTimeSet && currentDate - manualTimeSet <= possibleDeviation) {
-        return true
+        return currentDate - manualTimeSet
     }
     if (currentDate < manualTimeSet && currentDate - manualTimeSet >= -possibleDeviation) {
-        return true
+        return currentDate - manualTimeSet
     }
     return false
 }

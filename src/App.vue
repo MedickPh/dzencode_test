@@ -1,25 +1,26 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-
+import { RouterView } from 'vue-router'
 import Header from './views/Header.vue'
+import SideBlock from './views/SideBlock.vue'
 </script>
 
 <template>
     <Header />
-    <!-- <header>
-        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> 
-
-        <div class="wrapper">
-            <HelloWorld msg="You did it!" />
-
-            <nav>
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/about">About</RouterLink>
-            </nav>
-        </div>
-    </header> -->
-
-    <RouterView />
+    <div class="main_content">
+        <SideBlock />
+        <RouterView />
+    </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.main_content {
+    display: flex;
+    flex-direction: row;
+    .side_wrapper {
+        width: 100%;
+        max-width: 200px;
+        min-width: 165px;
+        height: calc(100vh - 60px);
+    }
+}
+</style>

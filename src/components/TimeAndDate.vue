@@ -48,29 +48,36 @@ const isTimeSettingOpen = ref(false)
 const weekDay = ref()
 const date = ref('')
 const time = ref('')
-const manualData = ref(parseInt(localStorage.getItem('manualData')))
 
 const updateTime = () => {
-    let dateNow
-    console.log(new Date(manualData.value))
+    const dateNow = new Date()
+    const manualData = parseInt(localStorage.getItem('manualData'))
+    let dateValue
 
-    if (manualData.value && !isNaN(Date.parse(manualData.value))) {
-        dateNow = new Date(manualData.value)
+    if (manualData && !isNaN(manualData)) {
+        if (Math.sign(manualData) === -1) {
+            dateValue = new Date(dateNow.getTime() + parseInt(manualData.toString().slice(1)))
+        } else {
+            dateValue = new Date(dateNow.getTime() - manualData)
+        }
     } else {
-        dateNow = new Date()
+        dateValue = dateNow
     }
 
-    time.value = dateNow.toLocaleTimeString(store.timeFormat)
-    weekDay.value = dateNow.getDay()
+    time.value = dateValue.toLocaleTimeString(store.timeFormat)
+    weekDay.value = dateValue.getDay()
+    const day = dateValue.getDate()
+    const month = dateValue.getMonth()
+    const year = dateValue.getFullYear()
 
-    const month = dateNow.getMonth()
-    const year = dateNow.getFullYear()
-    date.value = `${weekDay.value.toString().padStart(2, '0')} ${month_UA[month]} ${year}`
-    requestAnimationFrame(updateTime)
+    date.value = `${day.toString().padStart(2, '0')} ${month_UA[month]} ${year}`
 }
 
-// Безусловно requestAnimationFrame потребляет больше рессурсов устройства, но и выглядит получше)
-// Поэтому если это критично то строку requestAnimationFrame(updateTime) нужно заменить на setInterval(updateTime, 100)
+onMounted(() => {
+    updateTime()
+    setInterval(updateTime, 1000)
+    isDateChanged()
+})
 
 const openTimeSettings = () => {
     localStorage.setItem('is_date_changed', 'true')
@@ -81,11 +88,6 @@ const closeTimeSettings = () => {
     event.stopPropagation()
     isTimeSettingOpen.value = false
 }
-
-onMounted(() => {
-    updateTime()
-    isDateChanged()
-})
 </script>
 
 <style scoped lang="scss">

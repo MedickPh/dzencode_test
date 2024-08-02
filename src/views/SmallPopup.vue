@@ -16,11 +16,11 @@ const closeCurrentPopup = (event) => {
 
 <style scoped lang="scss">
 .small_popup_wrapper {
-    width: auto;
+    width: 100%;
     height: auto;
-    min-width: 200px;
     min-height: 100px;
     position: relative;
+
     button {
         border: none;
         position: absolute;

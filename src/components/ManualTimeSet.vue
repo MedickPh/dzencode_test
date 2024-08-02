@@ -4,12 +4,9 @@
             <p class="bold">Обратите внимание!</p>
             <p>Разница должна составлять не более 12 часов от текущего вашего времени</p>
         </div>
-        <img
-            src="/question.webp"
-            alt="Settings faq"
-            @mouseover="showFaq = true"
-            @mouseleave="showFaq = false"
-        />
+        <button class="settings_btn" @mouseover="showFaq = true" @mouseleave="showFaq = false">
+            <img src="/question.webp" alt="Settings faq" />
+        </button>
         <div class="time_format">
             <p
                 :class="{ active: store.timeFormat === 'en-US' }"
@@ -31,7 +28,7 @@
             id="setTime"
             :class="isError ? 'input_error' : ''"
         />
-        <button @click="checkTime()">
+        <button class="save_btn" @click="checkTime()">
             <img src="/square.webp" alt="" />
         </button>
     </div>
@@ -66,8 +63,10 @@ const checkTime = () => {
         showError()
         return
     }
-    if (checkPossibleDeviation(newTime.value)) {
-        store.setManualDate(Date.now(newTime.value))
+    const checkedTime = checkPossibleDeviation(newTime.value)
+
+    if (checkedTime !== false) {
+        store.setManualDate(checkedTime)
         closeCurrentPopup()
     } else {
         showError()
@@ -93,12 +92,7 @@ const checkTime = () => {
             font-weight: 600;
         }
     }
-    img {
-        width: 100%;
-        max-width: 35px;
-        float: left;
-        margin-right: 5px;
-    }
+
     input {
         border: none;
         border-radius: 5px;
@@ -114,6 +108,17 @@ const checkTime = () => {
     .input_error {
         border: 2px solid red;
     }
+    .settings_btn {
+        border: none;
+        outline: none;
+        padding: 0;
+        margin-right: 5px;
+        float: left;
+        img {
+            width: 100%;
+            max-width: 35px;
+        }
+    }
     .faq_block {
         position: absolute;
         background-color: #ffffff;
@@ -124,16 +129,21 @@ const checkTime = () => {
         border-radius: 15px;
         width: 170px;
         z-index: 5;
+
         .bold {
             font-weight: 600;
         }
     }
-    button {
+    .save_btn {
         border: none;
         position: absolute;
         bottom: -70%;
         right: 70px;
         background-color: transparent;
+        img {
+            width: 100%;
+            max-width: 35px;
+        }
     }
 }
 </style>

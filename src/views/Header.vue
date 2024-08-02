@@ -32,6 +32,7 @@ const searchTerm = ref('')
 header {
     width: 100%;
     max-width: 100%;
+    height: 60px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -72,7 +73,7 @@ header {
             label {
                 position: absolute;
                 top: 50%;
-                left: 1rem;
+                left: 25px;
                 transform: translateY(-50%);
                 pointer-events: none;
                 transition: all 0.35s ease;
