@@ -43,7 +43,6 @@ const checkClickOutside = (event) => {
         height: auto;
         min-width: 300px;
         min-height: 150px;
-        padding: 10px;
         border-radius: 10px;
         position: relative;
         background-color: #fff;

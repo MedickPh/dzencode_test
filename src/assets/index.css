@@ -2,6 +2,7 @@
     max-width: 1920px;
     margin: 0 auto;
     padding: 0;
+    position: relative;
 
 }
 
@@ -102,4 +103,14 @@ textarea:not([rows]) {
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
     scroll-margin-block: 5ex;
+}
+
+@keyframes opacity_animation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

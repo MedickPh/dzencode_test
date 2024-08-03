@@ -128,6 +128,7 @@ const closeTimeSettings = () => {
         top: 65px;
         right: 5px;
         cursor: auto;
+        z-index: 99;
     }
 }
 .animation::before {

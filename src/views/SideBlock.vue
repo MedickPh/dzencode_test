@@ -79,6 +79,7 @@ const openUserSettings = ref(false)
             top: 10px;
             right: -160px;
             cursor: auto;
+            z-index: 99;
         }
         .user_name {
             margin: 15px 0;

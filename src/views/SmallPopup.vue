@@ -20,6 +20,8 @@ const closeCurrentPopup = (event) => {
     height: auto;
     min-height: 100px;
     position: relative;
+    padding: 5px 10px;
+    z-index: 100;
 
     button {
         border: none;
