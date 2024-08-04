@@ -35,7 +35,7 @@ export const products = [
         serialNumber: 1234,
         isNew: 1,
         photo: '/monitor.jpg',
-        title: 'Product 1',
+        title: 'Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product',
         type: 'Monitors',
         specification: 'Specification 1',
         guarantee: {
@@ -55,7 +55,7 @@ export const products = [
         isNew: 1,
         photo: '/monitor.jpg',
         title: 'Product 2',
-        type: 'Monitors',
+        type: 'Monitors old',
         specification: 'Specification 2',
         guarantee: {
             start: '2017-06-29 12:09:33',
@@ -69,7 +69,7 @@ export const products = [
         date: '2017-06-29 12:09:33'
     },
     {
-        id: 2,
+        id: 3,
         serialNumber: 123456,
         isNew: 1,
         photo: '/monitor.jpg',
@@ -88,7 +88,7 @@ export const products = [
         date: '2017-06-29 12:09:33'
     },
     {
-        id: 2,
+        id: 4,
         serialNumber: 1234567,
         isNew: 1,
         photo: '/monitor.jpg',
@@ -107,7 +107,7 @@ export const products = [
         date: '2017-06-29 12:09:33'
     },
     {
-        id: 2,
+        id: 5,
         serialNumber: 12345678,
         isNew: 1,
         photo: '/monitor.jpg',
@@ -126,7 +126,7 @@ export const products = [
         date: '2017-06-29 12:09:33'
     },
     {
-        id: 2,
+        id: 6,
         serialNumber: 123456789,
         isNew: 1,
         photo: '/monitor.jpg',
@@ -145,7 +145,7 @@ export const products = [
         date: '2017-06-29 12:09:33'
     },
     {
-        id: 2,
+        id: 7,
         serialNumber: 12346,
         isNew: 0,
         photo: '/monitor.jpg',

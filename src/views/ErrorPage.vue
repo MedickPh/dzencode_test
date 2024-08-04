@@ -1,8 +1,7 @@
 <template>
     <div class="error_wrapper">
         <h2>
-            Ой, мы почти закончили делать эту страницу <br />
-            Еще немного осталось
+            {{ $t('not_found_page') }}
         </h2>
         <div class="birds">
             <div class="birds__hatdove">

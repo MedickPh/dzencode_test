@@ -8,7 +8,7 @@
             :class="{
                 hover_animation: hoverAnimation === 'orders'
             }"
-            >Приходы</RouterLink
+            >{{ $t('navigation.orders') }}</RouterLink
         >
         <RouterLink
             to="/products"
@@ -18,7 +18,7 @@
             :class="{
                 hover_animation: hoverAnimation === 'products'
             }"
-            >Продукты</RouterLink
+            >{{ $t('navigation.products') }}</RouterLink
         >
         <RouterLink
             to="/groups"
@@ -28,7 +28,7 @@
             :class="{
                 hover_animation: hoverAnimation === 'groups'
             }"
-            >Группы</RouterLink
+            >{{ $t('navigation.groups') }}</RouterLink
         >
         <RouterLink
             to="/users"
@@ -38,7 +38,7 @@
             :class="{
                 hover_animation: hoverAnimation === 'users'
             }"
-            >Пользователи</RouterLink
+            >{{ $t('navigation.users') }}</RouterLink
         >
         <RouterLink
             to="/settings"
@@ -48,7 +48,7 @@
             :class="{
                 hover_animation: hoverAnimation === 'settings'
             }"
-            >Настройки</RouterLink
+            >{{ $t('navigation.settings') }}</RouterLink
         >
     </nav>
 </template>
@@ -56,6 +56,10 @@
 <script setup>
 import { RouterLink, useRoute } from 'vue-router'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({ useScope: 'global' })
+
 const hoverAnimation = ref(null)
 const route = useRoute()
 </script>

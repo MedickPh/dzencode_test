@@ -1,6 +1,6 @@
 <template>
     <div class="error_wrapper">
-        <h2>Страница не найдена</h2>
+        <h2>{{ $t('not_found_page') }}</h2>
     </div>
 </template>
 <style scoped>

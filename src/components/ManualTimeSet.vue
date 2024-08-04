@@ -1,8 +1,8 @@
 <template>
     <div class="manual_time_set">
         <div class="faq_block" v-if="showFaq">
-            <p class="bold">Обратите внимание!</p>
-            <p>Разница должна составлять не более 12 часов от текущего вашего времени</p>
+            <p class="bold">{{ $t('header.settings_popup.title') }}</p>
+            <p>{{ $t('header.settings_popup.text') }}</p>
         </div>
         <button class="settings_btn" @mouseover="showFaq = true" @mouseleave="showFaq = false">
             <img src="/question.webp" alt="Settings faq" />
@@ -38,6 +38,7 @@
 import { ref, defineEmits } from 'vue'
 import { useMainStore } from '../stores/mainStore.ts'
 import { checkPossibleDeviation } from '../methods/checkPossibleDeviation.js'
+
 const showFaq = ref(false)
 const store = useMainStore()
 

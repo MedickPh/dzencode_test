@@ -1,4 +1,4 @@
-export const month_UA = [
+export const month_Ua = [
     'Січня',
     'Лютого',
     'Березня',

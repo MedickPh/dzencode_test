@@ -1,4 +1,4 @@
-export const weekday_UA = [
+export const weekday_Ua = [
     'Неділя',
     'Понеділок',
     'Вівторок',

@@ -6,6 +6,7 @@ export interface MainStore {
     manualDate: Ref<number>
     data: Ref<object>
     showOrderDetails: Ref<number>
+    language: Ref<string>
     changeTimeFormat: (format: string) => void
     setTimeFormat: (format: string) => void
     setManualDate: (newData: number) => void
@@ -17,6 +18,7 @@ export const useMainStore = defineStore('mainStore', () => {
     const manualDate: Ref<number> = ref(0)
     const data: Ref<object> = ref({})
     const showOrderDetails: Ref<number> = ref(0)
+    const language: Ref<string> = ref('')
 
     function changeTimeFormat(format: string) {
         timeFormat.value = format
@@ -39,16 +41,22 @@ export const useMainStore = defineStore('mainStore', () => {
     function setShowOrdersDetails(newValue: number) {
         showOrderDetails.value = newValue
     }
+    function setLanguage(newLang: string) {
+        language.value = newLang
+        localStorage.setItem('language', newLang)
+    }
 
     return {
         timeFormat,
         manualDate,
         data,
         showOrderDetails,
+        language,
         changeTimeFormat,
         setTimeFormat,
         setManualDate,
         setData,
-        setShowOrdersDetails
+        setShowOrdersDetails,
+        setLanguage
     } as MainStore
 })

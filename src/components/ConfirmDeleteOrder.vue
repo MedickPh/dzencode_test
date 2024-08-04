@@ -1,17 +1,19 @@
 <template>
     <div class="confirm_wrapper">
         <div class="text_wrapper">
-            <h2>Вы уверены что хотите удалить этот приход?</h2>
+            <h2>{{ $t('orders.delete_popup.title') }}</h2>
             <div class="data_to_delete">
                 <p class="order_title">{{ deleteOrderData.title }}</p>
                 <p class="order_date">{{ deleteOrderData.date }}</p>
             </div>
         </div>
         <div class="confirm_block">
-            <button class="cancel" @click="close">Отмена</button>
+            <button class="cancel" @click="close">
+                {{ $t('orders.delete_popup.cancel_btn') }}
+            </button>
             <button class="confirm" @click="confirm">
                 <img src="/delete.webp" alt="" />
-                Удалить
+                {{ $t('orders.delete_popup.confirm_btn') }}
             </button>
         </div>
     </div>

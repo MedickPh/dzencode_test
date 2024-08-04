@@ -1,13 +1,24 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, onMounted, watch } from 'vue'
 import Header from './views/Header.vue'
 import SideBlock from './views/SideBlock.vue'
 import Loader from './components/Loader.vue'
 import { useMainStore } from './stores/mainStore.ts'
 import { orders, products } from './data/app.js'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n({ useScope: 'global' })
+const getLang = () => {
+    const newLang = localStorage.getItem('language')
+    if (newLang === 'Ru' || newLang === 'Ua') {
+        locale.value = newLang
+        store.setLanguage(newLang)
+    }
+}
 const store = useMainStore()
 const dataLoading = ref(true)
+
 // Имитация получения данных с сервера
 const getData = () => {
     store.setData({ orders, products })
@@ -16,6 +27,15 @@ const getData = () => {
     }, 2500)
 }
 onBeforeMount(getData)
+onMounted(() => {
+    getLang()
+})
+watch(
+    () => store.language,
+    (newVal) => {
+        locale.value = newVal
+    }
+)
 </script>
 
 <template>
@@ -47,7 +67,7 @@ onBeforeMount(getData)
         width: 100%;
         max-width: 100%;
         position: relative;
-        margin: 15px;
+        margin: 15px 0 0 15px;
     }
 
     .router-enter-active {

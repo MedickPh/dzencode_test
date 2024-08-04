@@ -10,7 +10,7 @@
             <transition name="fade">
                 <div class="settings_popup" v-if="openUserSettings">
                     <SmallPopup @closePopup="openUserSettings = false">
-                        Тут может быть настройка юзера
+                        {{ $t('navigation.user_settings') }}
                     </SmallPopup>
                 </div>
             </transition>
@@ -23,6 +23,9 @@
 <script setup>
 import Navigation from '../components/Navigation.vue'
 import SmallPopup from '../views/SmallPopup.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({ useScope: 'global' })
 
 import { ref } from 'vue'
 
@@ -34,8 +37,8 @@ const openUserSettings = ref(false)
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    padding-bottom: 300px;
+    justify-content: flex-start;
+    padding-top: 100px;
     -webkit-box-shadow: 4px 0px 8px -5px rgb(0, 0, 0);
     -moz-box-shadow: 4px 0px 8px -5px rgb(0, 0, 0);
     box-shadow: 4px 0px 8px -5px rgb(0, 0, 0);
@@ -44,6 +47,7 @@ const openUserSettings = ref(false)
         flex-direction: column;
         align-items: center;
         position: relative;
+        margin-bottom: 100px;
 
         .user_img {
             position: relative;

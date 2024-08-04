@@ -11,7 +11,7 @@
             </div>
         </transition>
         <div class="date_wrapper">
-            <p class="week_day">{{ weekday_UA[weekDay] }}</p>
+            <p class="week_day">{{ weekday_Ua[weekDay] }}</p>
             <p class="date">{{ date }}</p>
         </div>
         <div class="time_wrapper">
@@ -36,8 +36,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { isDateChanged } from '@/methods/isDateChanged'
-import { weekday_UA } from '/src/data/weekday_UA.js'
-import { month_UA } from '/src/data/month_UA.js'
+import { weekday_Ua } from '/src/data/weekday_Ua.js'
+import { month_Ua } from '/src/data/month_Ua.js'
 import SmallPopup from '../views/SmallPopup.vue'
 import ManualTimeSet from '../components/ManualTimeSet.vue'
 import { useMainStore } from '../stores/mainStore.ts'
@@ -70,7 +70,7 @@ const updateTime = () => {
     const month = dateValue.getMonth()
     const year = dateValue.getFullYear()
 
-    date.value = `${day.toString().padStart(2, '0')} ${month_UA[month]} ${year}`
+    date.value = `${day.toString().padStart(2, '0')} ${month_Ua[month]} ${year}`
 }
 
 onMounted(() => {
