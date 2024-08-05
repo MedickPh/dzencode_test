@@ -34,6 +34,6 @@ npm run build
 npm run lint
 ```
 
-## Detailed architecture (scheme of interaction organization within the project) can be viewed [here] (https://drive.google.com/file/d/11_-hUEyL0pDWPddzcl4bzxXUi0JE4y2P/view?usp=sharing)
+## Detailed architecture (scheme of interaction organization within the project) can be viewed [here](https://drive.google.com/file/d/11_-hUEyL0pDWPddzcl4bzxXUi0JE4y2P/view?usp=sharing)
 
 The text description can be found inside the project in the file "tasks.txt"
