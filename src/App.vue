@@ -9,6 +9,10 @@ import { orders, products } from './data/app.js'
 import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n({ useScope: 'global' })
+
+const store = useMainStore()
+const dataLoading = ref(true)
+// Получение языка при загрузке
 const getLang = () => {
     const newLang = localStorage.getItem('language')
     if (newLang === 'Ru' || newLang === 'Ua') {
@@ -16,8 +20,6 @@ const getLang = () => {
         store.setLanguage(newLang)
     }
 }
-const store = useMainStore()
-const dataLoading = ref(true)
 
 // Имитация получения данных с сервера
 const getData = () => {

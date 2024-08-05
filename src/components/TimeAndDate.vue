@@ -48,12 +48,12 @@ const isTimeSettingOpen = ref(false)
 const weekDay = ref()
 const date = ref('')
 const time = ref('')
-
+// Вывод времени
 const updateTime = () => {
     const dateNow = new Date()
     const manualData = parseInt(localStorage.getItem('manualData'))
     let dateValue
-
+    // Проверяю задано ли время вручную, если да то использую его если нет то текущее
     if (manualData && !isNaN(manualData)) {
         if (Math.sign(manualData) === -1) {
             dateValue = new Date(dateNow.getTime() + parseInt(manualData.toString().slice(1)))

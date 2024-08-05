@@ -3,7 +3,7 @@ import './assets/index.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { createI18n, useI18n } from 'vue-i18n'
-import { languages, defaultLocale } from './i18n/i18n.js'
+import { languages, defaultLocale } from './i18n/i18n'
 
 import App from './App.vue'
 import router from './router'

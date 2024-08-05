@@ -56,9 +56,6 @@
 <script setup>
 import { RouterLink, useRoute } from 'vue-router'
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n({ useScope: 'global' })
 
 const hoverAnimation = ref(null)
 const route = useRoute()

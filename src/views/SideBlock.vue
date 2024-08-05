@@ -23,9 +23,6 @@
 <script setup>
 import Navigation from '../components/Navigation.vue'
 import SmallPopup from '../views/SmallPopup.vue'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n({ useScope: 'global' })
 
 import { ref } from 'vue'
 

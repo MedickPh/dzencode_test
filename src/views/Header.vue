@@ -31,6 +31,7 @@ import { useMainStore } from '../stores/mainStore.ts'
 
 const store = useMainStore()
 const currentLang = ref('Ua')
+//Получение формата времени при загрузке
 const checkTimeFormat = () => {
     const currentFormat = localStorage.getItem('timeFormat')
     if (currentFormat) {
@@ -38,13 +39,15 @@ const checkTimeFormat = () => {
     }
 }
 
+const searchTerm = ref('')
+
+// Изменение локали языка
 const setLang = (lang) => {
     store.setLanguage(lang)
     currentLang.value = lang
 }
 
 onMounted(checkTimeFormat)
-const searchTerm = ref('')
 </script>
 
 <style scoped lang="scss">

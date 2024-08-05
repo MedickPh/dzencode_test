@@ -11,6 +11,8 @@ export interface MainStore {
     setTimeFormat: (format: string) => void
     setManualDate: (newData: number) => void
     setData: (data: object) => void
+    setShowOrdersDetails: (newData: number) => void
+    setLanguage: (newLang: string) => void
 }
 
 export const useMainStore = defineStore('mainStore', () => {

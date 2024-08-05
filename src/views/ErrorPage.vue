@@ -1,7 +1,7 @@
 <template>
     <div class="error_wrapper">
         <h2>
-            {{ $t('not_found_page') }}
+            {{ $t('error_page') }}
         </h2>
         <div class="birds">
             <div class="birds__hatdove">
