@@ -1,7 +1,7 @@
 import { ref, onMounted } from 'vue';
 import { isDateChanged } from '@/methods/isDateChanged';
-import { weekday_Ua } from '/src/data/weekday_Ua.js';
-import { month_Ua } from '/src/data/month_Ua.js';
+import { weekday_Ua } from '/src/data/month_UA.js';
+import { month_Ua } from '/src/data/month_UA.js';
 import SmallPopup from '../views/SmallPopup.vue';
 import ManualTimeSet from '../components/ManualTimeSet.vue';
 import { useMainStore } from '../stores/mainStore.ts';

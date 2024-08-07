@@ -1,6 +1,6 @@
 import { ref, defineProps, onMounted, defineEmits } from 'vue';
 import { useMainStore } from '../stores/mainStore.ts';
-import { month_Ua } from '../data/month_Ua.js';
+import { month_Ua } from '../data/month_UA.js';
 const { defineSlots, defineExpose, defineModel, defineOptions, withDefaults, } = await import('vue');
 const store = useMainStore();
 const { order } = defineProps(['order']);

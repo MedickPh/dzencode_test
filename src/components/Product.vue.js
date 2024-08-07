@@ -1,5 +1,5 @@
 import { ref, defineProps, onMounted, defineEmits } from 'vue';
-import { month_Ua } from '../data/month_Ua.js';
+import { month_Ua } from '../data/month_UA.js';
 const { defineSlots, defineExpose, defineModel, defineOptions, withDefaults, } = await import('vue');
 const emit = defineEmits(['openPopup']);
 const { product } = defineProps(['product']);
